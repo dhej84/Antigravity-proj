@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>UXLearn – Master UI/UX Design & Web Dev | Self-Paced Courses</title>
+  <meta name="description" content="Self-paced UI/UX and web development courses for college students and side hustle professionals. Courses for product designers, hackathons, creative skills, and web dev with AI tools." />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- ─── NAVBAR ─── -->
+  <nav class="navbar" id="navbar">
+    <div class="container">
+      <a href="#" class="nav-logo">
+        <div class="logo-icon">✦</div>
+        <span>UX<span class="gradient-text">Learn</span></span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="#tracks">Tracks</a></li>
+        <li><a href="#courses">Courses</a></li>
+        <li><a href="#tools">AI Tools</a></li>
+        <li><a href="#path">Learning Path</a></li>
+        <li><a href="#pricing">Pricing</a></li>
+        <li><a href="#faq">FAQ</a></li>
+      </ul>
+      <div class="nav-cta">
+        <button class="btn btn-outline" id="loginBtn">Sign In</button>
+        <button class="btn btn-primary" id="startBtn">Start Free →</button>
+      </div>
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile Nav -->
+  <div class="mobile-nav" id="mobileNav">
+    <a href="#tracks" onclick="closeMobileNav()">Tracks</a>
+    <a href="#courses" onclick="closeMobileNav()">Courses</a>
+    <a href="#tools" onclick="closeMobileNav()">AI Tools</a>
+    <a href="#path" onclick="closeMobileNav()">Learning Path</a>
+    <a href="#pricing" onclick="closeMobileNav()">Pricing</a>
+    <a href="#faq" onclick="closeMobileNav()">FAQ</a>
+    <button class="btn btn-primary" style="margin-top:8px;" onclick="openModal()">Start for Free →</button>
+  </div>
+
+  <!-- ─── HERO ─── -->
+  <section class="hero" id="home">
+    <div class="hero-bg"></div>
+    <div class="hero-grid"></div>
+    <div class="container">
+      <div class="hero-content">
+        <!-- Left -->
+        <div class="hero-left">
+          <div class="hero-eyebrow animate-fadeInUp">
+            <div class="hero-eyebrow-line"></div>
+            <span class="badge badge-purple">✦ Self-Paced Learning Platform</span>
+          </div>
+          <h1 class="hero-heading animate-fadeInUp animate-delay-1">
+            Design Skills That<br/>
+            <span class="gradient-text">Land You Opportunities</span>
+          </h1>
+          <p class="hero-sub animate-fadeInUp animate-delay-2">
+            Master UI/UX design, build standout projects for hackathons, grow your side hustle — all with structured self-paced courses built for college students &amp; professionals.
+          </p>
+          <div class="hero-actions animate-fadeInUp animate-delay-3">
+            <button class="btn btn-primary" onclick="openModal()">🚀 Start for Free</button>
+            <a href="#courses" class="btn btn-outline">Explore Courses →</a>
+          </div>
+          <div class="hero-stats animate-fadeInUp animate-delay-4">
+            <div class="stat">
+              <div class="stat-number">12+</div>
+              <div class="stat-label">Courses</div>
+            </div>
+            <div class="stat">
+              <div class="stat-number">4</div>
+              <div class="stat-label">Learning Tracks</div>
+            </div>
+            <div class="stat">
+              <div class="stat-number">2K+</div>
+              <div class="stat-label">Students</div>
+            </div>
+          </div>
+        </div>
+        <!-- Right Visual -->
+        <div class="hero-visual animate-fadeInUp animate-delay-2">
+          <div class="hero-image-wrap">
+            <img src="../../brain/b3a2e2f6-4dc1-4f8f-bb56-5a090ec68c87/hero_banner_1779255662926.png" alt="UI/UX Learning Platform Hero" />
+            <div class="hero-float-card card-1">
+              <div class="fc-icon">🎨</div>
+              <div class="fc-text">
+                <strong>Figma Mastery</strong>
+                <span>Product Design Track</span>
+              </div>
+            </div>
+            <div class="hero-float-card card-2">
+              <div class="fc-icon">⚡</div>
+              <div class="fc-text">
+                <strong>Hackathon Ready</strong>
+                <span>Ship in 48 hours</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── TRACKS OVERVIEW ─── -->
+  <section class="tracks-section" id="tracks">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-label">Learning Tracks</div>
+        <h2 class="section-title">Choose Your <span class="gradient-text">Design Path</span></h2>
+        <p class="section-desc">Four focused tracks tailored to your goal — whether you're building a product, winning hackathons, selling creative skills, or shipping web apps.</p>
+      </div>
+
+      <div class="tracks-filter" id="filterBar">
+        <button class="filter-btn active" data-filter="all" id="filter-all">All Courses</button>
+        <button class="filter-btn" data-filter="product" id="filter-product">🎨 Product Design</button>
+        <button class="filter-btn" data-filter="hackathon" id="filter-hackathon">⚡ Hackathon</button>
+        <button class="filter-btn" data-filter="creative" id="filter-creative">✨ Creative Skills</button>
+        <button class="filter-btn" data-filter="webdev" id="filter-webdev">💻 Web Dev + AI</button>
+      </div>
+
+      <div class="courses-grid" id="coursesGrid">
+        <!-- TRACK 1: Product Design -->
+        <div class="course-card track-product reveal" data-track="product">
+          <div class="card-image">
+            <img src="../../brain/b3a2e2f6-4dc1-4f8f-bb56-5a090ec68c87/course_product_design_1779255707884.png" alt="UI/UX for Product Designers" loading="lazy" />
+            <div class="card-image-overlay"></div>
+            <div class="card-level"><span class="badge badge-purple">Beginner</span></div>
+          </div>
+          <div class="card-body">
+            <div class="card-track-label" style="color:#a855f7">🎨 Product Design Track</div>
+            <div class="card-title">UI/UX for Product Designers & Side-Hustle Pros</div>
+            <div class="card-desc">Learn Figma from scratch, build professional design systems, conduct user research, and create portfolios that attract clients and employers.</div>
+            <div class="card-meta">
+              <div class="meta-item"><span class="meta-icon">🕐</span> 24 Hours</div>
+              <div class="meta-item"><span class="meta-icon">📚</span> 8 Modules</div>
+              <div class="meta-item"><span class="meta-icon">🎯</span> 12 Projects</div>
+            </div>
+            <div class="card-tags">
+              <span class="tag">Figma</span>
+              <span class="tag">Design Systems</span>
+              <span class="tag">User Research</span>
+              <span class="tag">Portfolio</span>
+            </div>
+            <div class="card-footer">
+              <div class="card-price"><span class="price-free">Free</span></div>
+              <button class="card-enroll" onclick="openModal()">Enroll →</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="course-card track-product reveal" data-track="product">
+          <div class="card-image">
+            <img src="../../brain/b3a2e2f6-4dc1-4f8f-bb56-5a090ec68c87/course_product_design_1779255707884.png" alt="Advanced Product Design" loading="lazy" />
+            <div class="card-image-overlay"></div>
+            <div class="card-level"><span class="badge badge-pink">Advanced</span></div>
+          </div>
+          <div class="card-body">
+            <div class="card-track-label" style="color:#a855f7">🎨 Product Design Track</div>
+            <div class="card-title">Advanced UX: Research, Prototyping & Client Delivery</div>
+            <div class="card-desc">Deep-dive into UX Research methods, high-fidelity prototyping, usability testing, and delivering real client projects with confidence.</div>
+            <div class="card-meta">
+              <div class="meta-item"><span class="meta-icon">🕐</span> 30 Hours</div>
+              <div class="meta-item"><span class="meta-icon">📚</span> 10 Modules</div>
+              <div class="meta-item"><span class="meta-icon">💼</span> Freelance Ready</div>
+            </div>
+            <div class="card-tags">
+              <span class="tag">UX Research</span>
+              <span class="tag">Prototyping</span>
+              <span class="tag">Client Work</span>
+              <span class="tag">Usability</span>
+            </div>
+            <div class="card-footer">
+              <div class="card-price">
+                <span class="price-paid">₹999</span>
+                <span class="price-old">₹2,499</span>
+              </div>
+              <button class="card-enroll" onclick="openModal()">Enroll →</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- TRACK 2: Hackathon -->
+        <div class="course-card track-hackathon reveal" data-track="hackathon">
+          <div class="card-image">
+            <img src="../../brain/b3a2e2f6-4dc1-4f8f-bb56-5a090ec68c87/course_hackathon_1779255737860.png" alt="UI/UX for Hackathons" loading="lazy" />
+            <div class="card-image-overlay"></div>
+            <div class="card-level"><span class="badge badge-green">Project-Based</span></div>
+          </div>
+          <div class="card-body">
+            <div class="card-track-label" style="color:#10b981">⚡ Hackathon Track</div>
+            <div class="card-title">UI/UX for Hackathons & College Projects</div>
+            <div class="card-desc">Design a complete app in 48 hours. Learn rapid wireframing, quick prototyping, design sprints, and how to pitch your UI to judges effectively.</div>
+            <div class="card-meta">
+              <div class="meta-item"><span class="meta-icon">🕐</span> 16 Hours</div>
+              <div class="meta-item"><span class="meta-icon">📚</span> 6 Modules</div>
+              <div class="meta-item"><span class="meta-icon">🏆</span> Hackathon Kit</div>
+            </div>
+            <div class="card-tags">
+              <span class="tag">Wireframing</span>
+              <span class="tag">Design Sprint</span>
+              <span class="tag">Pitch Deck</span>
+              <span class="tag">Rapid UI</span>
+            </div>
+            <div class="card-footer">
+              <div class="card-price"><span class="price-free">Free</span></div>
+              <button class="card-enroll" onclick="openModal()">Enroll →</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="course-card track-hackathon reveal" data-track="hackathon">
+          <div class="card-image">
+            <img src="../../brain/b3a2e2f6-4dc1-4f8f-bb56-5a090ec68c87/course_hackathon_1779255737860.png" alt="Final Year Project Design" loading="lazy" />
+            <div class="card-image-overlay"></div>
+            <div class="card-level"><span class="badge badge-green">Intermediate</span></div>
+          </div>
+          <div class="card-body">
+            <div class="card-track-label" style="color:#10b981">⚡ Hackathon Track</div>
+            <div class="card-title">Final Year Project UI: From Idea to Submission</div>
+            <div class="card-desc">Build the full UI/UX for your final year project. Design flows, create documentation, add animations, and make your project reviewer-ready.</div>
+            <div class="card-meta">
+              <div class="meta-item"><span class="meta-icon">🕐</span> 20 Hours</div>
+              <div class="meta-item"><span class="meta-icon">📚</span> 7 Modules</div>
+              <div class="meta-item"><span class="meta-icon">📄</span> Documentation</div>
+            </div>
+            <div class="card-tags">
+              <span class="tag">Project UI</span>
+              <span class="tag">Animations</span>
+              <span class="tag">Docs</span>
+              <span class="tag">Case Study</span>
+            </div>
+            <div class="card-footer">
+              <div class="card-price">
+                <span class="price-paid">₹699</span>
+                <span class="price-old">₹1,499</span>
+              </div>
+              <button class="card-enroll" onclick="openModal()">Enroll →</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- TRACK 3: Creative Skills -->
+        <div class="course-card track-creative reveal" data-track="creative">
+          <div class="card-image">
+            <img src="../../brain/b3a2e2f6-4dc1-4f8f-bb56-5a090ec68c87/course_creative_1779256072461.png" alt="Creative Design Skills" loading="lazy" />
+            <div class="card-image-overlay"></div>
+            <div class="card-level"><span class="badge badge-orange">Beginner</span></div>
+          </div>
+          <div class="card-body">
+            <div class="card-track-label" style="color:#f59e0b">✨ Creative Skills Track</div>
+            <div class="card-title">Creative UI/UX: Typography, Color & Visual Hierarchy</div>
+            <div class="card-desc">Master the foundational creative skills that separate average designers from professionals. Color theory, typography pairing, grid systems, and visual storytelling.</div>
+            <div class="card-meta">
+              <div class="meta-item"><span class="meta-icon">🕐</span> 18 Hours</div>
+              <div class="meta-item"><span class="meta-icon">📚</span> 7 Modules</div>
+              <div class="meta-item"><span class="meta-icon">🎨</span> Creative Labs</div>
+            </div>
+            <div class="card-tags">
+              <span class="tag">Typography</span>
+              <span class="tag">Color Theory</span>
+              <span class="tag">Grid Systems</span>
+              <span class="tag">Branding</span>
+            </div>
+            <div class="card-footer">
+              <div class="card-price"><span class="price-free">Free</span></div>
+              <button class="card-enroll" onclick="openModal()">Enroll →</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="course-card track-creative reveal" data-track="creative">
+          <div class="card-image">
+            <img src="../../brain/b3a2e2f6-4dc1-4f8f-bb56-5a090ec68c87/course_creative_1779256072461.png" alt="Motion Design & Microinteractions" loading="lazy" />
+            <div class="card-image-overlay"></div>
+            <div class="card-level"><span class="badge badge-orange">Intermediate</span></div>
+          </div>
+          <div class="card-body">
+            <div class="card-track-label" style="color:#f59e0b">✨ Creative Skills Track</div>
+            <div class="card-title">Motion Design & Micro-Interactions for Apps</div>
+            <div class="card-desc">Add life to your designs with micro-animations, transitions, loading states, and motion design principles using Figma Smart Animate and Lottie.</div>
+            <div class="card-meta">
+              <div class="meta-item"><span class="meta-icon">🕐</span> 14 Hours</div>
+              <div class="meta-item"><span class="meta-icon">📚</span> 5 Modules</div>
+              <div class="meta-item"><span class="meta-icon">✨</span> Motion Kit</div>
+            </div>
+            <div class="card-tags">
+              <span class="tag">Motion</span>
+              <span class="tag">Lottie</span>
+              <span class="tag">Smart Animate</span>
+              <span class="tag">Transitions</span>
+            </div>
+            <div class="card-footer">
+              <div class="card-price">
+                <span class="price-paid">₹799</span>
+                <span class="price-old">₹1,999</span>
+              </div>
+              <button class="card-enroll" onclick="openModal()">Enroll →</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- TRACK 4: Web Dev + AI -->
+        <div class="course-card track-webdev reveal" data-track="webdev">
+          <div class="card-image">
+            <img src="../../brain/b3a2e2f6-4dc1-4f8f-bb56-5a090ec68c87/course_webdev_ai_1779256426873.png" alt="Web Dev with AI Tools" loading="lazy" />
+            <div class="card-image-overlay"></div>
+            <div class="card-level"><span class="badge badge-cyan">Beginner</span></div>
+          </div>
+          <div class="card-body">
+            <div class="card-track-label" style="color:#22d3ee">💻 Web Dev + AI Track</div>
+            <div class="card-title">Modern Web Dev: HTML, CSS & JavaScript with AI</div>
+            <div class="card-desc">Build beautiful, responsive websites using HTML, CSS, and JavaScript. Use AI tools like GitHub Copilot, v0.dev, and Cursor to 10x your output.</div>
+            <div class="card-meta">
+              <div class="meta-item"><span class="meta-icon">🕐</span> 28 Hours</div>
+              <div class="meta-item"><span class="meta-icon">📚</span> 9 Modules</div>
+              <div class="meta-item"><span class="meta-icon">🤖</span> AI Powered</div>
+            </div>
+            <div class="card-tags">
+              <span class="tag">HTML/CSS</span>
+              <span class="tag">JavaScript</span>
+              <span class="tag">Copilot</span>
+              <span class="tag">v0.dev</span>
+            </div>
+            <div class="card-footer">
+              <div class="card-price"><span class="price-free">Free</span></div>
+              <button class="card-enroll" onclick="openModal()">Enroll →</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="course-card track-webdev reveal" data-track="webdev">
+          <div class="card-image">
+            <img src="../../brain/b3a2e2f6-4dc1-4f8f-bb56-5a090ec68c87/course_webdev_ai_1779256426873.png" alt="React and AI Tools" loading="lazy" />
+            <div class="card-image-overlay"></div>
+            <div class="card-level"><span class="badge badge-cyan">Intermediate</span></div>
+          </div>
+          <div class="card-body">
+            <div class="card-track-label" style="color:#22d3ee">💻 Web Dev + AI Track</div>
+            <div class="card-title">React + AI: Ship Full-Stack Apps in Days</div>
+            <div class="card-desc">Build and deploy full-stack web apps using React, Node.js, and the latest AI coding tools — Cursor, Windsurf, Claude, and Supabase for the backend.</div>
+            <div class="card-meta">
+              <div class="meta-item"><span class="meta-icon">🕐</span> 35 Hours</div>
+              <div class="meta-item"><span class="meta-icon">📚</span> 11 Modules</div>
+              <div class="meta-item"><span class="meta-icon">🚀</span> Full-Stack</div>
+            </div>
+            <div class="card-tags">
+              <span class="tag">React</span>
+              <span class="tag">Cursor AI</span>
+              <span class="tag">Supabase</span>
+              <span class="tag">Claude</span>
+            </div>
+            <div class="card-footer">
+              <div class="card-price">
+                <span class="price-paid">₹1,299</span>
+                <span class="price-old">₹3,499</span>
+              </div>
+              <button class="card-enroll" onclick="openModal()">Enroll →</button>
+            </div>
+          </div>
+        </div>
+      </div><!-- /#coursesGrid -->
+    </div>
+  </section>
+
+  <!-- ─── AI TOOLS SECTION ─── -->
+  <section class="tools-section" id="tools">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-label">Tools You'll Master</div>
+        <h2 class="section-title">Powered by the <span class="gradient-text">Latest AI Tools</span></h2>
+        <p class="section-desc">Every course teaches you to use the most in-demand design and development tools used by professionals at top companies.</p>
+      </div>
+      <div class="tools-grid" id="courses">
+        <div class="tool-card reveal"><div class="tool-emoji">🎨</div><div class="tool-name">Figma</div><div class="tool-type">Design & Prototype</div></div>
+        <div class="tool-card reveal"><div class="tool-emoji">🤖</div><div class="tool-name">GitHub Copilot</div><div class="tool-type">AI Code Assistant</div></div>
+        <div class="tool-card reveal"><div class="tool-emoji">⚡</div><div class="tool-name">Cursor AI</div><div class="tool-type">AI Code Editor</div></div>
+        <div class="tool-card reveal"><div class="tool-emoji">🔮</div><div class="tool-name">v0.dev</div><div class="tool-type">AI UI Generator</div></div>
+        <div class="tool-card reveal"><div class="tool-emoji">🧠</div><div class="tool-name">Claude AI</div><div class="tool-type">AI Writing & Code</div></div>
+        <div class="tool-card reveal"><div class="tool-emoji">🌊</div><div class="tool-name">Windsurf</div><div class="tool-type">AI Dev Environment</div></div>
+        <div class="tool-card reveal"><div class="tool-emoji">🗄️</div><div class="tool-name">Supabase</div><div class="tool-type">Backend as a Service</div></div>
+        <div class="tool-card reveal"><div class="tool-emoji">⚛️</div><div class="tool-name">React</div><div class="tool-type">UI Framework</div></div>
+        <div class="tool-card reveal"><div class="tool-emoji">🎬</div><div class="tool-name">Lottie</div><div class="tool-type">Motion Design</div></div>
+        <div class="tool-card reveal"><div class="tool-emoji">📱</div><div class="tool-name">Framer</div><div class="tool-type">No-Code Design</div></div>
+        <div class="tool-card reveal"><div class="tool-emoji">🎯</div><div class="tool-name">Notion AI</div><div class="tool-type">Project Management</div></div>
+        <div class="tool-card reveal"><div class="tool-emoji">🚀</div><div class="tool-name">Vercel</div><div class="tool-type">Deploy & Ship</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── LEARNING PATH ─── -->
+  <section class="path-section" id="path">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-label">Structured Learning</div>
+        <h2 class="section-title">Your <span class="gradient-text">8-Week Journey</span> to Design Mastery</h2>
+        <p class="section-desc">A proven, structured path from zero to portfolio-ready. Follow at your own pace — every week builds on the last.</p>
+      </div>
+      <div class="path-grid">
+        <div class="path-visual reveal">
+          <div class="path-timeline">
+            <div class="path-step">
+              <div class="path-step-dot"></div>
+              <div class="path-step-week">Week 1–2</div>
+              <div class="path-step-title">Design Foundations & Figma Basics</div>
+              <div class="path-step-desc">Learn design principles, color theory, typography, and Figma workspace setup. Complete your first UI screen.</div>
+            </div>
+            <div class="path-step">
+              <div class="path-step-dot cyan"></div>
+              <div class="path-step-week">Week 3–4</div>
+              <div class="path-step-title">Wireframing, Flows & Prototyping</div>
+              <div class="path-step-desc">Build full user flows, interactive prototypes, and navigation systems. Learn component-based design.</div>
+            </div>
+            <div class="path-step">
+              <div class="path-step-dot green"></div>
+              <div class="path-step-week">Week 5–6</div>
+              <div class="path-step-title">Real Project — App/Website Design</div>
+              <div class="path-step-desc">Design a complete mobile app or website UI from scratch. Get peer reviews and iterate on feedback.</div>
+            </div>
+            <div class="path-step">
+              <div class="path-step-dot orange"></div>
+              <div class="path-step-week">Week 7</div>
+              <div class="path-step-title">Web Dev Basics + AI Coding Tools</div>
+              <div class="path-step-desc">Convert your Figma designs to code with HTML/CSS. Use GitHub Copilot and v0.dev to accelerate.</div>
+            </div>
+            <div class="path-step">
+              <div class="path-step-dot pink"></div>
+              <div class="path-step-week">Week 8</div>
+              <div class="path-step-title">Portfolio, Case Studies & Launch</div>
+              <div class="path-step-desc">Write compelling case studies, publish your portfolio site, and prepare for client outreach or job applications.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="path-card reveal">
+          <div class="path-card-title">What You'll Walk Away With 🎯</div>
+          <div class="outcome-list">
+            <div class="outcome-item">
+              <div class="outcome-check">✓</div>
+              <span>A professional UI/UX portfolio with 3–5 real projects</span>
+            </div>
+            <div class="outcome-item">
+              <div class="outcome-check">✓</div>
+              <span>Figma expertise used by top product teams worldwide</span>
+            </div>
+            <div class="outcome-item">
+              <div class="outcome-check">✓</div>
+              <span>Ability to design and code your own front-end using AI tools</span>
+            </div>
+            <div class="outcome-item">
+              <div class="outcome-check">✓</div>
+              <span>Hackathon-ready design skills — ship full UI in under 48 hours</span>
+            </div>
+            <div class="outcome-item">
+              <div class="outcome-check">✓</div>
+              <span>Freelance-ready skills to start landing clients immediately</span>
+            </div>
+            <div class="outcome-item">
+              <div class="outcome-check">✓</div>
+              <span>UX research skills to validate ideas and pitch to investors</span>
+            </div>
+            <div class="outcome-item">
+              <div class="outcome-check">✓</div>
+              <span>Modern web dev skills: React, AI tools, and full-stack deployment</span>
+            </div>
+            <div class="outcome-item">
+              <div class="outcome-check">✓</div>
+              <span>Community of like-minded designers & developers (peer network)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── TESTIMONIALS ─── -->
+  <section class="testimonials-section">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-label">Student Stories</div>
+        <h2 class="section-title">Real Results, <span class="gradient-text">Real People</span></h2>
+      </div>
+      <div class="testimonials-grid">
+        <div class="testimonial-card reveal">
+          <div class="testimonial-stars">★★★★★</div>
+          <div class="testimonial-text">"I landed my first freelance project within 3 weeks of starting the Product Design track. The portfolio guidance alone was worth it!"</div>
+          <div class="testimonial-author">
+            <div class="author-avatar" style="background: linear-gradient(135deg, #a855f7, #ec4899);">P</div>
+            <div>
+              <div class="author-name">Priya Nair</div>
+              <div class="author-role">Design Student → Freelancer, Chennai</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card reveal">
+          <div class="testimonial-stars">★★★★★</div>
+          <div class="testimonial-text">"Won our college hackathon using the rapid wireframing techniques from the Hackathon track. Our UI was the reason we stood out!"</div>
+          <div class="testimonial-author">
+            <div class="author-avatar" style="background: linear-gradient(135deg, #10b981, #22d3ee);">R</div>
+            <div>
+              <div class="author-name">Rahul Sharma</div>
+              <div class="author-role">CS Student, IIT Bombay</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card reveal">
+          <div class="testimonial-stars">★★★★★</div>
+          <div class="testimonial-text">"The React + AI tools course changed my career. I'm now building SaaS products on weekends and making extra income from my side hustle."</div>
+          <div class="testimonial-author">
+            <div class="author-avatar" style="background: linear-gradient(135deg, #22d3ee, #3b82f6);">A</div>
+            <div>
+              <div class="author-name">Aditya Verma</div>
+              <div class="author-role">Software Engineer, Pune</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card reveal">
+          <div class="testimonial-stars">★★★★★</div>
+          <div class="testimonial-text">"As someone with zero design background, the Creative Skills track gave me the confidence to design social media posts and UI for my online boutique."</div>
+          <div class="testimonial-author">
+            <div class="author-avatar" style="background: linear-gradient(135deg, #f59e0b, #ec4899);">S</div>
+            <div>
+              <div class="author-name">Sneha Kulkarni</div>
+              <div class="author-role">Entrepreneur & Side Hustler, Bangalore</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card reveal">
+          <div class="testimonial-stars">★★★★★</div>
+          <div class="testimonial-text">"The Figma + motion design lessons are super detailed. I now create animated prototypes that my clients love — it sets me apart from other designers."</div>
+          <div class="testimonial-author">
+            <div class="author-avatar" style="background: linear-gradient(135deg, #a855f7, #22d3ee);">K</div>
+            <div>
+              <div class="author-name">Karan Mehta</div>
+              <div class="author-role">UI Designer, Mumbai</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card reveal">
+          <div class="testimonial-stars">★★★★★</div>
+          <div class="testimonial-text">"Used Cursor AI + the web dev course to build and ship my final year project website in just 2 days. It was insane how fast I could work!"</div>
+          <div class="testimonial-author">
+            <div class="author-avatar" style="background: linear-gradient(135deg, #10b981, #f59e0b);">M</div>
+            <div>
+              <div class="author-name">Meera Patel</div>
+              <div class="author-role">Engineering Student, VIT Vellore</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── PRICING ─── -->
+  <section class="pricing-section" id="pricing">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-label">Simple Pricing</div>
+        <h2 class="section-title">Start <span class="gradient-text">Free,</span> Upgrade When Ready</h2>
+        <p class="section-desc">No surprises. Cancel anytime. Student-friendly pricing designed to make world-class education accessible.</p>
+      </div>
+      <div class="pricing-grid">
+        <!-- Free -->
+        <div class="pricing-card reveal">
+          <div class="plan-name">Free Starter</div>
+          <div class="plan-price">
+            <span class="price-currency">₹</span>
+            <span class="price-amount">0</span>
+            <span class="price-period">/ forever</span>
+          </div>
+          <div class="plan-desc">Perfect for beginners exploring UI/UX for the first time.</div>
+          <div class="plan-features">
+            <div class="plan-feature"><span class="feature-check">✓</span> 4 Free Course Tracks</div>
+            <div class="plan-feature"><span class="feature-check">✓</span> Beginner Modules</div>
+            <div class="plan-feature"><span class="feature-check">✓</span> Community Access</div>
+            <div class="plan-feature"><span class="feature-check">✓</span> Project Starter Kits</div>
+            <div class="plan-feature"><span class="feature-x">✗</span> Certificates</div>
+            <div class="plan-feature"><span class="feature-x">✗</span> Mentor Reviews</div>
+            <div class="plan-feature"><span class="feature-x">✗</span> Premium AI Tool Guides</div>
+          </div>
+          <button class="btn btn-outline plan-cta" onclick="openModal()">Get Started Free</button>
+        </div>
+        <!-- Pro -->
+        <div class="pricing-card featured reveal">
+          <div class="pricing-popular"><span class="badge badge-purple">🔥 Most Popular</span></div>
+          <div class="plan-name">Pro Learner</div>
+          <div class="plan-price">
+            <span class="price-currency">₹</span>
+            <span class="price-amount gradient-text">499</span>
+            <span class="price-period">/ month</span>
+          </div>
+          <div class="plan-desc">Everything you need to go from beginner to employed or freelance-ready.</div>
+          <div class="plan-features">
+            <div class="plan-feature"><span class="feature-check">✓</span> All 12+ Courses Unlocked</div>
+            <div class="plan-feature"><span class="feature-check">✓</span> Certificates of Completion</div>
+            <div class="plan-feature"><span class="feature-check">✓</span> Mentor Design Reviews</div>
+            <div class="plan-feature"><span class="feature-check">✓</span> Premium AI Tool Guides</div>
+            <div class="plan-feature"><span class="feature-check">✓</span> 1-on-1 Doubt Sessions</div>
+            <div class="plan-feature"><span class="feature-check">✓</span> Portfolio Review</div>
+            <div class="plan-feature"><span class="feature-check">✓</span> Hackathon Resource Kit</div>
+          </div>
+          <button class="btn btn-primary plan-cta" onclick="openModal()">Start Pro Trial →</button>
+        </div>
+        <!-- Lifetime -->
+        <div class="pricing-card reveal">
+          <div class="plan-name">Lifetime Access</div>
+          <div class="plan-price">
+            <span class="price-currency">₹</span>
+            <span class="price-amount">3,999</span>
+            <span class="price-period">one-time</span>
+          </div>
+          <div class="plan-desc">Pay once, learn forever. Best value for serious learners.</div>
+          <div class="plan-features">
+            <div class="plan-feature"><span class="feature-check">✓</span> Everything in Pro</div>
+            <div class="plan-feature"><span class="feature-check">✓</span> Future Courses Free</div>
+            <div class="plan-feature"><span class="feature-check">✓</span> Discord VIP Access</div>
+            <div class="plan-feature"><span class="feature-check">✓</span> Early Access to New Content</div>
+            <div class="plan-feature"><span class="feature-check">✓</span> Freelance Proposals Guide</div>
+            <div class="plan-feature"><span class="feature-check">✓</span> Job Referral Network</div>
+            <div class="plan-feature"><span class="feature-check">✓</span> Priority Mentor Access</div>
+          </div>
+          <button class="btn btn-outline plan-cta" onclick="openModal()">Get Lifetime Access</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── FAQ ─── -->
+  <section class="faq-section" id="faq">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-label">FAQ</div>
+        <h2 class="section-title">Got <span class="gradient-text">Questions?</span></h2>
+      </div>
+      <div class="faq-grid" id="faqGrid">
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            Do I need any prior design experience?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">Absolutely not! All our beginner tracks start from scratch. We teach you everything from what a pixel is to publishing your first portfolio project. The courses are designed for complete beginners.</div>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            Are the free courses actually good, or just teasers?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">Our free courses are full, complete courses — not teasers. We offer 4 full beginner-level courses for free because we believe education should be accessible. The paid plans unlock advanced courses, certificates, and mentor access.</div>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            How long will it take to complete a course?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">Courses range from 14–35 hours of content. At 1–2 hours per day, expect 2–4 weeks per course. Everything is self-paced — no deadlines, ever. Learn on your schedule.</div>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            Will I get a certificate when I finish?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">Yes! Pro and Lifetime members receive verifiable digital certificates for each completed course. These can be added to LinkedIn, your resume, or your portfolio with a shareable verification link.</div>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            Is this suitable for college students in India?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">100%! UXLearn is specifically built with Indian college students in mind. The pricing is student-friendly, the Hackathon track is tailored for college-level projects, and the side-hustle content helps you earn while you study.</div>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            Do I need to install any software?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">Figma has a free plan and runs in the browser — no download needed. For web dev courses, you'll need VS Code (free) and Node.js (free). Most AI tools we teach have free tiers. Total software cost: ₹0.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── CTA BANNER ─── -->
+  <section class="cta-section">
+    <div class="container">
+      <div class="cta-banner reveal">
+        <h2 class="cta-title">Ready to Start Designing<br><span class="gradient-text">Your Future?</span></h2>
+        <p class="cta-desc">Join 2,000+ students and professionals who are building skills, shipping projects, and landing opportunities through UXLearn.</p>
+        <div class="cta-actions">
+          <button class="btn btn-primary" onclick="openModal()">🚀 Start Free Today</button>
+          <a href="#courses" class="btn btn-outline">Browse All Courses →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── FOOTER ─── -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="nav-logo">
+            <div class="logo-icon">✦</div>
+            <span>UX<span class="gradient-text">Learn</span></span>
+          </div>
+          <p class="footer-tagline">Self-paced UI/UX and web development courses for college students & side hustle professionals across India.</p>
+          <div class="footer-socials">
+            <a href="#" class="social-btn" aria-label="Twitter">𝕏</a>
+            <a href="#" class="social-btn" aria-label="Instagram">📸</a>
+            <a href="#" class="social-btn" aria-label="LinkedIn">in</a>
+            <a href="#" class="social-btn" aria-label="YouTube">▶</a>
+            <a href="#" class="social-btn" aria-label="Discord">💬</a>
+          </div>
+        </div>
+        <div>
+          <div class="footer-col-title">Tracks</div>
+          <div class="footer-links">
+            <a href="#courses">Product Design</a>
+            <a href="#courses">Hackathon UI/UX</a>
+            <a href="#courses">Creative Skills</a>
+            <a href="#courses">Web Dev + AI</a>
+          </div>
+        </div>
+        <div>
+          <div class="footer-col-title">Learn</div>
+          <div class="footer-links">
+            <a href="#path">Learning Path</a>
+            <a href="#tools">AI Tools Guide</a>
+            <a href="#pricing">Pricing</a>
+            <a href="#faq">FAQ</a>
+          </div>
+        </div>
+        <div>
+          <div class="footer-col-title">Company</div>
+          <div class="footer-links">
+            <a href="#">About</a>
+            <a href="#">Blog</a>
+            <a href="#">Community</a>
+            <a href="#">Contact</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2025 UXLearn. Made with ♥ for designers & builders in India.</span>
+        <span>Privacy Policy · Terms of Service</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ─── MODAL (Signup) ─── -->
+  <div class="modal-overlay" id="modalOverlay" onclick="closeModalOutside(event)">
+    <div class="modal" id="signupModal">
+      <button class="modal-close" onclick="closeModal()" aria-label="Close">✕</button>
+      <div class="modal-title">Start Learning for Free ✦</div>
+      <div class="modal-subtitle">Create your free account — no credit card required.</div>
+      <div class="form-group">
+        <label class="form-label" for="signupName">Full Name</label>
+        <input class="form-input" id="signupName" type="text" placeholder="e.g. Rahul Sharma" autocomplete="name" />
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="signupEmail">Email Address</label>
+        <input class="form-input" id="signupEmail" type="email" placeholder="you@example.com" autocomplete="email" />
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="signupTrack">Which track interests you most?</label>
+        <select class="form-input" id="signupTrack">
+          <option value="">Select a track...</option>
+          <option>🎨 Product Design & Side Hustle</option>
+          <option>⚡ Hackathon & College Projects</option>
+          <option>✨ Creative Skill Building</option>
+          <option>💻 Web Dev + AI Tools</option>
+        </select>
+      </div>
+      <button class="btn btn-primary modal-submit" onclick="handleSignup()">
+        🚀 Create Free Account
+      </button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
