@@ -102,32 +102,6 @@ document.addEventListener('keydown', (e) => {
   if (e.key === 'Escape') closeModal();
 });
 
-/* ── Signup form handler ── */
-function handleSignup() {
-  const name  = document.getElementById('signupName').value.trim();
-  const email = document.getElementById('signupEmail').value.trim();
-  const track = document.getElementById('signupTrack').value;
-
-  if (!name) {
-    showToast('Please enter your full name.', 'error');
-    return;
-  }
-  if (!email || !email.includes('@')) {
-    showToast('Please enter a valid email address.', 'error');
-    return;
-  }
-  if (!track) {
-    showToast('Please select a learning track.', 'error');
-    return;
-  }
-
-  // Simulate signup
-  closeModal();
-  setTimeout(() => {
-    showToast(`🎉 Welcome, ${name}! Check your email for next steps.`, 'success');
-  }, 300);
-}
-
 /* ── Toast notifications ── */
 function showToast(message, type = 'success') {
   // Remove existing toast
@@ -231,11 +205,12 @@ document.querySelectorAll('.tool-card').forEach(card => {
     setTimeout(() => { card.style.transform = ''; }, 150);
   });
 });
+
 /* ============================================
    UXLearn – API Integration
    ============================================ */
 
-const API = 'http://localhost:3000/api';
+const API = 'https://antigravity-proj.onrender.com/api';
 
 /* ── Token helpers ── */
 const auth = {
@@ -279,7 +254,7 @@ function updateNavAuth() {
   if (!signInBtn || !startBtn) return;
 
   if (user) {
-    signInBtn.textContent = user.name.split(' ')[0]; // show first name
+    signInBtn.textContent = user.name.split(' ')[0];
     signInBtn.href = '#';
     signInBtn.onclick = handleLogout;
     startBtn.textContent = 'Dashboard →';
@@ -312,17 +287,16 @@ function openModalMode(mode = 'signup') {
   }
 }
 
-/* ── Signup (replaces the simulate) ── */
+/* ── Signup ── */
 async function handleSignup() {
   const name  = document.getElementById('signupName').value.trim();
   const email = document.getElementById('signupEmail').value.trim();
   const track = document.getElementById('signupTrack').value;
 
-  if (!name)               return showToast('Please enter your full name.', 'error');
+  if (!name)                        return showToast('Please enter your full name.', 'error');
   if (!email || !email.includes('@')) return showToast('Please enter a valid email.', 'error');
-  if (!track)              return showToast('Please select a learning track.', 'error');
+  if (!track)                       return showToast('Please select a learning track.', 'error');
 
-  // Need a password field — use email prefix + random as default, prompt user
   const password = prompt('Choose a password (min 8 characters):');
   if (!password || password.length < 8) return showToast('Password must be at least 8 characters.', 'error');
 
@@ -397,7 +371,7 @@ async function handleEnroll(courseId, btn) {
   }
 }
 
-/* ── Simple dashboard toast (full dashboard page is next step) ── */
+/* ── Dashboard summary toast ── */
 async function showDashboard() {
   try {
     const data = await apiFetch('/dashboard');
@@ -409,7 +383,6 @@ async function showDashboard() {
 }
 
 /* ── Wire up Enroll buttons ── */
-// Add data-course-id="<uuid>" to each enroll button in your HTML
 document.querySelectorAll('[data-course-id]').forEach(btn => {
   btn.addEventListener('click', (e) => {
     e.preventDefault();
