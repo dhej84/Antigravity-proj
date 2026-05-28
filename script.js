@@ -231,3 +231,191 @@ document.querySelectorAll('.tool-card').forEach(card => {
     setTimeout(() => { card.style.transform = ''; }, 150);
   });
 });
+/* ============================================
+   UXLearn – API Integration
+   ============================================ */
+
+const API = 'http://localhost:3000/api';
+
+/* ── Token helpers ── */
+const auth = {
+  save: (tokens) => {
+    localStorage.setItem('uxl_token', tokens.access_token);
+    localStorage.setItem('uxl_refresh', tokens.refresh_token);
+  },
+  token: () => localStorage.getItem('uxl_token'),
+  clear: () => {
+    localStorage.removeItem('uxl_token');
+    localStorage.removeItem('uxl_refresh');
+    localStorage.removeItem('uxl_user');
+  },
+  saveUser: (user) => localStorage.setItem('uxl_user', JSON.stringify(user)),
+  user: () => JSON.parse(localStorage.getItem('uxl_user') || 'null'),
+  isLoggedIn: () => !!localStorage.getItem('uxl_token'),
+};
+
+/* ── API fetch wrapper ── */
+async function apiFetch(path, options = {}) {
+  const headers = { 'Content-Type': 'application/json', ...options.headers };
+  if (auth.token()) headers['Authorization'] = `Bearer ${auth.token()}`;
+
+  const res = await fetch(`${API}${path}`, { ...options, headers });
+  const data = await res.json();
+
+  if (!res.ok) throw new Error(data.error || 'Something went wrong');
+  return data;
+}
+
+/* ── Update navbar based on login state ── */
+function updateNavAuth() {
+  const user = auth.user();
+  const signInBtn = document.querySelector('.nav-actions a[href*="Sign"]') ||
+                    [...document.querySelectorAll('.nav-actions a')]
+                      .find(a => a.textContent.trim() === 'Sign In');
+  const startBtn  = document.querySelector('.btn-primary.nav-cta') ||
+                    [...document.querySelectorAll('.nav-actions a')]
+                      .find(a => a.textContent.includes('Start Free'));
+
+  if (!signInBtn || !startBtn) return;
+
+  if (user) {
+    signInBtn.textContent = user.name.split(' ')[0]; // show first name
+    signInBtn.href = '#';
+    signInBtn.onclick = handleLogout;
+    startBtn.textContent = 'Dashboard →';
+    startBtn.href = '#';
+    startBtn.onclick = (e) => { e.preventDefault(); showDashboard(); };
+  } else {
+    signInBtn.textContent = 'Sign In';
+    signInBtn.onclick = () => openModalMode('login');
+    startBtn.textContent = 'Start Free →';
+    startBtn.onclick = (e) => { e.preventDefault(); openModal(); };
+  }
+}
+
+/* ── Modal modes: signup vs login ── */
+function openModalMode(mode = 'signup') {
+  openModal();
+  const title    = document.querySelector('#modalOverlay h2, #modalOverlay .modal-title');
+  const trackRow = document.getElementById('signupTrack')?.closest('div, p, label')?.parentElement;
+
+  if (mode === 'login') {
+    if (title) title.textContent = 'Welcome Back ✦';
+    if (trackRow) trackRow.style.display = 'none';
+    document.querySelector('.modal-submit-btn, [onclick="handleSignup()"]')
+      .setAttribute('onclick', 'handleLogin()');
+  } else {
+    if (title) title.textContent = 'Start Learning for Free ✦';
+    if (trackRow) trackRow.style.display = '';
+    document.querySelector('.modal-submit-btn, [onclick="handleLogin()"]')
+      ?.setAttribute('onclick', 'handleSignup()');
+  }
+}
+
+/* ── Signup (replaces the simulate) ── */
+async function handleSignup() {
+  const name  = document.getElementById('signupName').value.trim();
+  const email = document.getElementById('signupEmail').value.trim();
+  const track = document.getElementById('signupTrack').value;
+
+  if (!name)               return showToast('Please enter your full name.', 'error');
+  if (!email || !email.includes('@')) return showToast('Please enter a valid email.', 'error');
+  if (!track)              return showToast('Please select a learning track.', 'error');
+
+  // Need a password field — use email prefix + random as default, prompt user
+  const password = prompt('Choose a password (min 8 characters):');
+  if (!password || password.length < 8) return showToast('Password must be at least 8 characters.', 'error');
+
+  try {
+    showToast('Creating your account...', 'success');
+    const data = await apiFetch('/auth/register', {
+      method: 'POST',
+      body: JSON.stringify({ name, email, password }),
+    });
+
+    auth.save(data);
+    auth.saveUser(data.user);
+    closeModal();
+    updateNavAuth();
+    setTimeout(() => showToast(`🎉 Welcome, ${data.user.name}! You're all set.`, 'success'), 300);
+  } catch (err) {
+    showToast(err.message, 'error');
+  }
+}
+
+/* ── Login ── */
+async function handleLogin() {
+  const email    = document.getElementById('signupEmail').value.trim();
+  const password = prompt('Enter your password:');
+
+  if (!email || !password) return showToast('Email and password required.', 'error');
+
+  try {
+    showToast('Signing you in...', 'success');
+    const data = await apiFetch('/auth/login', {
+      method: 'POST',
+      body: JSON.stringify({ email, password }),
+    });
+
+    auth.save(data);
+    auth.saveUser(data.user);
+    closeModal();
+    updateNavAuth();
+    setTimeout(() => showToast(`👋 Welcome back, ${data.user.name}!`, 'success'), 300);
+  } catch (err) {
+    showToast(err.message, 'error');
+  }
+}
+
+/* ── Logout ── */
+function handleLogout() {
+  auth.clear();
+  updateNavAuth();
+  showToast('Logged out successfully.', 'success');
+}
+
+/* ── Enroll button handler ── */
+async function handleEnroll(courseId, btn) {
+  if (!auth.isLoggedIn()) {
+    showToast('Please sign in to enroll.', 'error');
+    openModal();
+    return;
+  }
+
+  btn.textContent = 'Enrolling...';
+  btn.disabled = true;
+
+  try {
+    await apiFetch(`/courses/${courseId}/enroll`, { method: 'POST' });
+    btn.textContent = '✓ Enrolled';
+    btn.style.background = 'linear-gradient(135deg, #22c55e, #16a34a)';
+    showToast('Successfully enrolled! 🎉', 'success');
+  } catch (err) {
+    btn.textContent = 'Enroll →';
+    btn.disabled = false;
+    showToast(err.message, 'error');
+  }
+}
+
+/* ── Simple dashboard toast (full dashboard page is next step) ── */
+async function showDashboard() {
+  try {
+    const data = await apiFetch('/dashboard');
+    const u = data.user;
+    showToast(`📊 ${u.name} · ${data.stats.enrolled} courses · ${data.stats.completed} completed`, 'success');
+  } catch (err) {
+    showToast('Could not load dashboard.', 'error');
+  }
+}
+
+/* ── Wire up Enroll buttons ── */
+// Add data-course-id="<uuid>" to each enroll button in your HTML
+document.querySelectorAll('[data-course-id]').forEach(btn => {
+  btn.addEventListener('click', (e) => {
+    e.preventDefault();
+    handleEnroll(btn.dataset.courseId, btn);
+  });
+});
+
+/* ── Init ── */
+updateNavAuth();
