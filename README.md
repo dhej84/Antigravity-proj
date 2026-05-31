@@ -109,3 +109,218 @@ Exploring AI-assisted development, modern UI/UX tools, and how far you can get w
 ---
 
 *Built with Google Antigravity · Deployed on GitHub Pages · Mistakes included at no extra charge*
+
+# UXLearn Backend
+
+Backend services powering the UXLearn learning platform.
+
+This repository provides the server-side infrastructure for authentication, course management, progress tracking, AI-powered learning assistance, and analytics.
+
+---
+
+## Overview
+
+UXLearn is a modern e-learning platform designed to provide students with an engaging and personalized learning experience. The backend serves as the central hub for managing users, courses, enrollments, learning progress, and platform data.
+
+### Core Responsibilities
+
+* User authentication and authorization
+* Course and content management
+* Enrollment handling
+* Learning progress tracking
+* AI-powered educational support
+* Analytics and reporting
+* Secure API communication
+
+---
+
+## Features
+
+### User Authentication
+
+* User registration and login
+* Secure password storage
+* JWT-based authentication
+* Role-based access control
+* Profile management
+
+### Course Management
+
+* Create, update, and delete courses
+* Manage lessons and modules
+* Organize learning paths
+* Course publishing workflow
+
+### Learning Progress
+
+* Track lesson completion
+* Save student progress
+* Calculate completion percentages
+* Generate learning insights
+
+### AI Learning Assistance
+
+* Personalized recommendations
+* Learning roadmap suggestions
+* Study support features
+* Intelligent content assistance
+
+### Analytics Dashboard
+
+* Enrollment statistics
+* Student engagement metrics
+* Course performance insights
+* Platform usage reports
+
+---
+
+## Technology Stack
+
+| Category          | Technology             |
+| ----------------- | ---------------------- |
+| Runtime           | Node.js                |
+| Framework         | Express.js             |
+| Database          | MongoDB                |
+| ODM               | Mongoose               |
+| Authentication    | JWT                    |
+| Password Security | bcrypt                 |
+| API Architecture  | REST                   |
+| Deployment        | Render / Railway / AWS |
+
+---
+
+## Project Structure
+
+```text
+backend/
+│
+├── src/
+│   ├── config/
+│   ├── controllers/
+│   ├── middleware/
+│   ├── models/
+│   ├── routes/
+│   ├── services/
+│   ├── utils/
+│   └── app.js
+│
+├── tests/
+├── .env
+├── package.json
+└── server.js
+```
+
+---
+
+## Environment Variables
+
+Create a `.env` file in the root directory:
+
+```env
+PORT=5000
+
+MONGO_URI=your_mongodb_connection_string
+
+JWT_SECRET=your_jwt_secret
+
+CLIENT_URL=http://localhost:3000
+```
+
+---
+
+## Installation
+
+Clone the repository:
+
+```bash
+git clone https://github.com/your-username/uxlearn-backend.git
+```
+
+Move into the project directory:
+
+```bash
+cd uxlearn-backend
+```
+
+Install dependencies:
+
+```bash
+npm install
+```
+
+Run the development server:
+
+```bash
+npm run dev
+```
+
+Run in production:
+
+```bash
+npm start
+```
+
+---
+
+## API Endpoints
+
+### Authentication
+
+```http
+POST /api/auth/register
+POST /api/auth/login
+GET  /api/auth/profile
+```
+
+### Courses
+
+```http
+GET    /api/courses
+GET    /api/courses/:id
+POST   /api/courses
+PUT    /api/courses/:id
+DELETE /api/courses/:id
+```
+
+### Enrollments
+
+```http
+POST /api/enrollments
+GET  /api/enrollments
+```
+
+### Progress
+
+```http
+POST /api/progress
+GET  /api/progress/:courseId
+```
+
+---
+
+## Security
+
+* JWT Authentication
+* Password hashing using bcrypt
+* Environment-based configuration
+* Input validation
+* Protected routes
+* CORS support
+
+---
+
+## Future Enhancements
+
+* Live classes and webinars
+* Certificate generation
+* AI tutor integration
+* Discussion forums
+* Mentor sessions
+* Gamified learning experience
+* Advanced analytics dashboard
+
+---
+
+
+---
+
